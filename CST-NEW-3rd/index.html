@@ -1,0 +1,3741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CST NEW 3rd</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --bg:#070b12;
+  --panel:#0d131d;
+  --panel2:#111a26;
+  --border:#202c3b;
+  --text:#f4f7fb;
+  --muted:#8c9aae;
+  --accent:#5b8cff;
+  --accent2:#3f6fe0;
+  --danger:#ff5d6c;
+  --success:#39d98a;
+}
+
+body{
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+button,input,textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* AUTH */
+
+.auth{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.auth-box{
+  width:100%;
+  max-width:430px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:30px;
+  box-shadow:0 20px 70px rgba(0,0,0,.4);
+}
+
+.logo{
+  width:64px;
+  height:64px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#5b8cff,#7d55ff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+  font-weight:800;
+  margin:0 auto 18px;
+}
+
+.auth-title{
+  text-align:center;
+  font-size:25px;
+  font-weight:800;
+}
+
+.auth-sub{
+  text-align:center;
+  color:var(--muted);
+  margin-top:8px;
+  margin-bottom:25px;
+}
+
+.tabs{
+  display:flex;
+  gap:8px;
+  margin-bottom:20px;
+}
+
+.tab{
+  flex:1;
+  padding:11px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--panel2);
+  color:var(--muted);
+}
+
+.tab.active{
+  background:var(--accent);
+  color:white;
+  border-color:var(--accent);
+}
+
+.field{
+  margin-bottom:14px;
+}
+
+.field label{
+  display:block;
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:7px;
+}
+
+.field input,
+.field textarea{
+  width:100%;
+  background:#080e17;
+  border:1px solid var(--border);
+  color:white;
+  border-radius:11px;
+  padding:12px;
+  outline:none;
+}
+
+.field input:focus,
+.field textarea:focus{
+  border-color:var(--accent);
+}
+
+.primary{
+  width:100%;
+  border:0;
+  border-radius:11px;
+  padding:13px;
+  background:var(--accent);
+  color:white;
+  font-weight:700;
+}
+
+.primary:hover{
+  background:var(--accent2);
+}
+
+.error{
+  background:rgba(255,93,108,.1);
+  border:1px solid rgba(255,93,108,.3);
+  color:#ff8792;
+  border-radius:10px;
+  padding:10px;
+  margin-bottom:14px;
+  font-size:13px;
+}
+
+/* APP */
+
+.app{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:280px 1fr;
+}
+
+.sidebar{
+  background:var(--panel);
+  border-right:1px solid var(--border);
+  padding:18px;
+  overflow-y:auto;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--border);
+}
+
+.brand-icon{
+  width:43px;
+  height:43px;
+  border-radius:13px;
+  background:linear-gradient(135deg,#5b8cff,#7d55ff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+}
+
+.brand-name{
+  font-weight:800;
+}
+
+.brand-stage{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:3px;
+}
+
+.me{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:18px 0;
+}
+
+.avatar{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:#25344a;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+}
+
+.me-name{
+  font-weight:700;
+}
+
+.me-user{
+  font-size:12px;
+  color:var(--muted);
+}
+
+.nav{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.nav button{
+  border:1px solid transparent;
+  background:transparent;
+  color:#b9c4d3;
+  text-align:left;
+  padding:12px;
+  border-radius:10px;
+}
+
+.nav button:hover,
+.nav button.active{
+  background:#151f2d;
+  border-color:var(--border);
+  color:white;
+}
+
+.logout{
+  margin-top:20px;
+  width:100%;
+  border:1px solid #2a3442;
+  background:transparent;
+  color:#ff7c88;
+  padding:11px;
+  border-radius:10px;
+}
+
+/* MAIN */
+
+.main{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+}
+
+.topbar{
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:12px 20px;
+  border-bottom:1px solid var(--border);
+  background:rgba(13,19,29,.9);
+}
+
+.search{
+  width:min(480px,100%);
+}
+
+.search input{
+  width:100%;
+  background:#080e17;
+  border:1px solid var(--border);
+  color:white;
+  border-radius:11px;
+  padding:11px 13px;
+  outline:none;
+}
+
+.top-actions{
+  display:flex;
+  gap:7px;
+}
+
+.icon-btn{
+  width:40px;
+  height:40px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:var(--panel2);
+  color:white;
+}
+
+.content{
+  flex:1;
+  min-height:0;
+  display:flex;
+}
+
+.people{
+  width:310px;
+  border-right:1px solid var(--border);
+  overflow-y:auto;
+}
+
+.people-title{
+  padding:18px;
+  font-weight:800;
+  border-bottom:1px solid var(--border);
+}
+
+.person{
+  display:flex;
+  gap:11px;
+  padding:13px 16px;
+  border-bottom:1px solid rgba(32,44,59,.55);
+  cursor:pointer;
+}
+
+.person:hover,
+.person.selected{
+  background:#111a27;
+}
+
+.person-info{
+  min-width:0;
+  flex:1;
+}
+
+.person-name{
+  font-weight:700;
+}
+
+.person-user{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:3px;
+}
+
+.online{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:var(--success);
+  margin-top:16px;
+}
+
+.offline{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#4a5565;
+  margin-top:16px;
+}
+
+.chat{
+  flex:1;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+}
+
+.chat-empty{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--muted);
+  text-align:center;
+  padding:20px;
+}
+
+.chat-head{
+  padding:13px 18px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+
+.chat-status{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:3px;
+}
+
+.messages{
+  flex:1;
+  overflow-y:auto;
+  padding:20px;
+}
+
+.message-row{
+  display:flex;
+  margin-bottom:10px;
+}
+
+.message-row.mine{
+  justify-content:flex-end;
+}
+
+.bubble{
+  max-width:min(70%,500px);
+  padding:10px 13px;
+  border-radius:15px;
+  background:#151f2c;
+  border:1px solid var(--border);
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+.mine .bubble{
+  background:#315ec5;
+  border-color:#315ec5;
+}
+
+.message-time{
+  font-size:10px;
+  opacity:.65;
+  margin-top:5px;
+}
+
+.composer{
+  padding:13px;
+  border-top:1px solid var(--border);
+  display:flex;
+  gap:8px;
+}
+
+.composer input{
+  flex:1;
+  min-width:0;
+  background:#080e17;
+  color:white;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:12px;
+  outline:none;
+}
+
+.send{
+  padding:0 18px;
+  border:0;
+  border-radius:11px;
+  background:var(--accent);
+  color:white;
+  font-weight:700;
+}
+
+.voice{
+  width:44px;
+  border:1px solid var(--border);
+  background:var(--panel2);
+  color:white;
+  border-radius:11px;
+}
+
+/* PAGE */
+
+.page{
+  width:100%;
+  padding:25px;
+  overflow-y:auto;
+}
+
+.page-title{
+  font-size:26px;
+  font-weight:800;
+  margin-bottom:20px;
+}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:18px;
+  margin-bottom:12px;
+}
+
+.card-title{
+  font-weight:800;
+  margin-bottom:8px;
+}
+
+.card-sub{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.story{
+  padding:15px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:var(--panel);
+  margin-bottom:10px;
+}
+
+.note{
+  padding:16px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:var(--panel);
+  margin-bottom:10px;
+}
+
+.note h3{
+  margin-bottom:7px;
+}
+
+.note p{
+  color:#c1cad6;
+  white-space:pre-wrap;
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:100;
+}
+
+.modal-box{
+  width:100%;
+  max-width:430px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:22px;
+}
+
+.modal-actions{
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+}
+
+.modal-actions button{
+  flex:1;
+  padding:11px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:var(--panel2);
+  color:white;
+}
+
+.modal-actions .primary{
+  background:var(--accent);
+  border:0;
+}
+
+.call-box{
+  text-align:center;
+}
+
+.call-avatar{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  background:#263852;
+  margin:10px auto 15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  font-weight:800;
+}
+
+.call-buttons{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:20px;
+}
+
+.call-buttons button{
+  padding:12px 20px;
+  border:0;
+  border-radius:11px;
+  background:var(--accent);
+  color:white;
+}
+
+.call-buttons .end{
+  background:var(--danger);
+}
+
+@media(max-width:850px){
+  .app{
+    grid-template-columns:75px 1fr;
+  }
+
+  .sidebar{
+    padding:10px;
+  }
+
+  .brand-name,
+  .brand-stage,
+  .me-name,
+  .me-user,
+  .nav span,
+  .logout{
+    display:none;
+  }
+
+  .brand{
+    justify-content:center;
+  }
+
+  .me{
+    justify-content:center;
+  }
+
+  .nav button{
+    text-align:center;
+  }
+
+  .people{
+    width:220px;
+  }
+}
+
+@media(max-width:650px){
+  .app{
+    grid-template-columns:1fr;
+  }
+
+  .sidebar{
+    display:none;
+  }
+
+  .content{
+    flex-direction:column;
+  }
+
+  .people{
+    width:100%;
+    max-height:35vh;
+    border-right:0;
+    border-bottom:1px solid var(--border);
+  }
+
+  .topbar{
+    height:auto;
+    padding:10px;
+  }
+
+  .top-actions{
+    display:none;
+  }
+
+  .bubble{
+    max-width:82%;
+  }
+
+  .page{
+    padding:15px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- AUTH -->
+
+<section id="auth" class="auth">
+
+  <div class="auth-box">
+
+    <div class="logo">CST</div>
+
+    <div class="auth-title" id="authTitle">
+      CST NEW 3rd
+    </div>
+
+    <div class="auth-sub">
+      Private messaging for Batch 2028
+    </div>
+
+    <div class="tabs">
+      <button id="loginTab" class="tab active">Login</button>
+      <button id="signupTab" class="tab">Sign Up</button>
+    </div>
+
+    <div id="authError" class="error hidden"></div>
+
+    <form id="authForm">
+
+      <div id="fullNameField" class="field hidden">
+        <label>Full Name</label>
+        <input id="fullName" autocomplete="name">
+      </div>
+
+      <div class="field">
+        <label>Username</label>
+        <input
+          id="username"
+          required
+          autocomplete="username"
+          placeholder="your_username">
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <input
+          id="password"
+          type="password"
+          required
+          autocomplete="current-password">
+      </div>
+
+      <div id="confirmField" class="field hidden">
+        <label>Confirm Password</label>
+        <input
+          id="confirmPassword"
+          type="password"
+          autocomplete="new-password">
+      </div>
+
+      <button class="primary" id="authButton">
+        Login
+      </button>
+
+    </form>
+
+  </div>
+
+</section>
+
+
+<!-- APP -->
+
+<section id="app" class="app hidden">
+
+  <aside class="sidebar">
+
+    <div class="brand">
+
+      <div class="brand-icon">C</div>
+
+      <div>
+        <div class="brand-name" id="brandName">
+          CST NEW 3rd
+        </div>
+
+        <div class="brand-stage">
+          Batch 2028
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="me">
+
+      <div class="avatar" id="myAvatar">
+        ?
+      </div>
+
+      <div>
+        <div class="me-name" id="myName">
+          User
+        </div>
+
+        <div class="me-user" id="myUsername">
+          @user
+        </div>
+      </div>
+
+    </div>
+
+
+    <nav class="nav">
+
+      <button class="active" id="navChat">
+        💬 <span>Chats</span>
+      </button>
+
+      <button id="navRequests">
+        👥 <span>Requests</span>
+      </button>
+
+      <button id="navNotes">
+        📝 <span>Notes</span>
+      </button>
+
+      <button id="navStories">
+        🟣 <span>Stories</span>
+      </button>
+
+    </nav>
+
+
+    <button class="logout" id="logout">
+      Logout
+    </button>
+
+  </aside>
+
+
+  <main class="main">
+
+    <header class="topbar">
+
+      <div class="search">
+        <input
+          id="searchInput"
+          placeholder="Search users...">
+      </div>
+
+      <div class="top-actions">
+
+        <button class="icon-btn" id="refreshUsers">
+          ↻
+        </button>
+
+      </div>
+
+    </header>
+
+
+    <div id="mainContent" class="content">
+
+      <section class="people">
+
+        <div class="people-title">
+          People
+        </div>
+
+        <div id="peopleList"></div>
+
+      </section>
+
+
+      <section class="chat">
+
+        <div id="chatEmpty" class="chat-empty">
+          Select a user to start chatting.
+        </div>
+
+        <div id="chatUI" class="hidden">
+
+          <div class="chat-head">
+
+            <div class="avatar" id="chatAvatar">
+              ?
+            </div>
+
+            <div>
+
+              <div id="chatName">
+                User
+              </div>
+
+              <div class="chat-status" id="chatStatus">
+                Offline
+              </div>
+
+            </div>
+
+            <div style="margin-left:auto;display:flex;gap:7px;">
+
+              <button class="icon-btn" id="callButton">
+                📞
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="messages" id="messages"></div>
+
+
+          <div class="composer">
+
+            <button class="voice" id="voiceButton">
+              🎙️
+            </button>
+
+            <input
+              id="messageInput"
+              placeholder="Write a message...">
+
+            <button class="send" id="sendButton">
+              Send
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+</section>
+
+
+<!-- MODAL -->
+
+<div id="modal" class="modal hidden">
+
+  <div class="modal-box" id="modalBox"></div>
+
+</div>
+
+
+<script type="module">
+
+import {
+  createClient
+} from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+
+/* =====================================================
+   SUPABASE CONFIG
+   ===================================================== */
+
+const SUPABASE_URL =
+  "https://eaasxugloyifgejahidn.supabase.co";
+
+/*
+  IMPORTANT:
+  এখানে নিজের Publishable key বসাও।
+*/
+
+const SUPABASE_KEY =
+  "PASTE_YOUR_PUBLISHABLE_KEY_HERE";
+
+
+const supabase =
+  createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* =====================================================
+   GLOBAL STATE
+   ===================================================== */
+
+let currentUser = null;
+let currentProfile = null;
+let selectedUser = null;
+
+let messageChannel = null;
+let profileChannel = null;
+let requestChannel = null;
+let callChannel = null;
+
+let mediaRecorder = null;
+let audioChunks = [];
+
+let localStream = null;
+let peerConnection = null;
+
+let currentCallId = null;
+
+
+/* =====================================================
+   CST STAGE
+   ===================================================== */
+
+function getStage(){
+
+  const start =
+    new Date("2026-09-04T00:00:00");
+
+  const now = new Date();
+
+  const months =
+    (now.getFullYear() - start.getFullYear()) * 12 +
+    (now.getMonth() - start.getMonth());
+
+  if(months >= 36){
+    return "Batch 2028";
+  }
+
+  const stage =
+    3 + Math.floor(months / 6);
+
+  return `CST NEW ${stage}th`;
+}
+
+
+function updateBrand(){
+
+  const stage = getStage();
+
+  document.title = stage;
+
+  document.getElementById("brandName").textContent =
+    stage;
+
+  document.getElementById("authTitle").textContent =
+    stage;
+}
+
+
+/* =====================================================
+   HELPERS
+   ===================================================== */
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+
+function initials(name){
+
+  return String(name || "?")
+    .trim()
+    .split(/\s+/)
+    .slice(0,2)
+    .map(x => x[0])
+    .join("")
+    .toUpperCase();
+}
+
+
+function showError(message){
+
+  const box =
+    document.getElementById("authError");
+
+  box.textContent = message;
+
+  box.classList.remove("hidden");
+}
+
+
+function clearError(){
+
+  document
+    .getElementById("authError")
+    .classList.add("hidden");
+}
+
+
+function formatTime(date){
+
+  return new Date(date)
+    .toLocaleTimeString([],{
+      hour:"2-digit",
+      minute:"2-digit"
+    });
+}
+
+
+/* =====================================================
+   AUTH TABS
+   ===================================================== */
+
+let authMode = "login";
+
+const loginTab =
+  document.getElementById("loginTab");
+
+const signupTab =
+  document.getElementById("signupTab");
+
+const fullNameField =
+  document.getElementById("fullNameField");
+
+const confirmField =
+  document.getElementById("confirmField");
+
+const authButton =
+  document.getElementById("authButton");
+
+
+function setAuthMode(mode){
+
+  authMode = mode;
+
+  clearError();
+
+  const signup =
+    mode === "signup";
+
+  loginTab.classList.toggle(
+    "active",
+    !signup
+  );
+
+  signupTab.classList.toggle(
+    "active",
+    signup
+  );
+
+  fullNameField.classList.toggle(
+    "hidden",
+    !signup
+  );
+
+  confirmField.classList.toggle(
+    "hidden",
+    !signup
+  );
+
+  authButton.textContent =
+    signup ? "Create Account" : "Login";
+}
+
+
+loginTab.onclick =
+  () => setAuthMode("login");
+
+signupTab.onclick =
+  () => setAuthMode("signup");
+
+
+/* =====================================================
+   AUTH
+   ===================================================== */
+
+document
+  .getElementById("authForm")
+  .addEventListener("submit", async event => {
+
+    event.preventDefault();
+
+    clearError();
+
+    const username =
+      document
+        .getElementById("username")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const password =
+      document
+        .getElementById("password")
+        .value;
+
+    if(!/^[a-z0-9_.-]{3,30}$/.test(username)){
+
+      showError(
+        "Username must be 3-30 characters and use letters, numbers, _ . or -."
+      );
+
+      return;
+    }
+
+
+    if(authMode === "signup"){
+
+      const fullName =
+        document
+          .getElementById("fullName")
+          .value
+          .trim();
+
+      const confirmPassword =
+        document
+          .getElementById("confirmPassword")
+          .value;
+
+
+      if(!fullName){
+
+        showError("Enter your full name.");
+
+        return;
+      }
+
+
+      if(password.length < 6){
+
+        showError(
+          "Password must contain at least 6 characters."
+        );
+
+        return;
+      }
+
+
+      if(password !== confirmPassword){
+
+        showError(
+          "Passwords do not match."
+        );
+
+        return;
+      }
+
+
+      const { data: existing } =
+        await supabase
+          .from("profiles")
+          .select("id")
+          .ilike("username", username)
+          .maybeSingle();
+
+
+      if(existing){
+
+        showError(
+          "This username is already taken."
+        );
+
+        return;
+      }
+
+
+      /*
+        Username-only login architecture.
+
+        The internal email is NOT displayed to the user.
+      */
+
+      const internalEmail =
+        `${username}@cstnew3rd.invalid`;
+
+
+      const { data, error } =
+        await supabase.auth.signUp({
+
+          email: internalEmail,
+
+          password,
+
+          options:{
+            data:{
+              username,
+              full_name:fullName
+            }
+          }
+
+        });
+
+
+      if(error){
+
+        showError(error.message);
+
+        return;
+      }
+
+
+      if(data.user){
+
+        currentUser = data.user;
+
+        await ensureProfile(
+          username,
+          fullName
+        );
+
+        await boot();
+
+      }
+
+      return;
+    }
+
+
+    /* LOGIN */
+
+    const internalEmail =
+      `${username}@cstnew3rd.invalid`;
+
+
+    const { data, error } =
+      await supabase.auth.signInWithPassword({
+
+        email: internalEmail,
+
+        password
+
+      });
+
+
+    if(error){
+
+      showError(
+        "Login failed: " + error.message
+      );
+
+      return;
+    }
+
+
+    currentUser =
+      data.user;
+
+    await boot();
+
+  });
+
+
+/* =====================================================
+   PROFILE
+   ===================================================== */
+
+async function ensureProfile(
+  username,
+  fullName
+){
+
+  if(!currentUser)
+    return;
+
+
+  const { data } =
+    await supabase
+      .from("profiles")
+      .select("*")
+      .eq("id", currentUser.id)
+      .maybeSingle();
+
+
+  if(data){
+
+    currentProfile = data;
+
+    return;
+  }
+
+
+  const { data: profile, error } =
+    await supabase
+      .from("profiles")
+      .insert({
+
+        id:currentUser.id,
+
+        username,
+
+        full_name:fullName,
+
+        is_online:true,
+
+        last_seen:new Date().toISOString()
+
+      })
+      .select()
+      .single();
+
+
+  if(error){
+
+    console.error(error);
+
+    return;
+  }
+
+
+  currentProfile = profile;
+}
+
+
+/* =====================================================
+   BOOT
+   ===================================================== */
+
+async function boot(){
+
+  if(!currentUser){
+
+    const {
+      data
+    } =
+      await supabase.auth.getUser();
+
+    currentUser =
+      data.user;
+  }
+
+
+  if(!currentUser)
+    return;
+
+
+  const {
+    data:profile
+  } =
+    await supabase
+      .from("profiles")
+      .select("*")
+      .eq("id",currentUser.id)
+      .maybeSingle();
+
+
+  if(!profile){
+
+    const meta =
+      currentUser.user_metadata || {};
+
+    await ensureProfile(
+      meta.username ||
+        currentUser.email.split("@")[0],
+
+      meta.full_name ||
+        "New User"
+    );
+
+  }else{
+
+    currentProfile = profile;
+
+  }
+
+
+  if(!currentProfile){
+
+    const {
+      data:p
+    } =
+      await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id",currentUser.id)
+        .single();
+
+    currentProfile = p;
+  }
+
+
+  await setOnline(true);
+
+
+  document
+    .getElementById("auth")
+    .classList.add("hidden");
+
+  document
+    .getElementById("app")
+    .classList.remove("hidden");
+
+
+  renderMe();
+
+  await loadPeople();
+
+  subscribeRealtime();
+
+}
+
+
+/* =====================================================
+   RENDER ME
+   ===================================================== */
+
+function renderMe(){
+
+  if(!currentProfile)
+    return;
+
+
+  document
+    .getElementById("myName")
+    .textContent =
+      currentProfile.full_name;
+
+
+  document
+    .getElementById("myUsername")
+    .textContent =
+      "@" + currentProfile.username;
+
+
+  document
+    .getElementById("myAvatar")
+    .textContent =
+      initials(currentProfile.full_name);
+}
+
+
+/* =====================================================
+   ONLINE STATUS
+   ===================================================== */
+
+async function setOnline(value){
+
+  if(!currentUser)
+    return;
+
+
+  await supabase
+    .from("profiles")
+    .update({
+
+      is_online:value,
+
+      last_seen:new Date().toISOString(),
+
+      updated_at:new Date().toISOString()
+
+    })
+    .eq("id",currentUser.id);
+
+}
+
+
+window.addEventListener(
+  "beforeunload",
+  () => {
+
+    if(currentUser){
+
+      supabase
+        .from("profiles")
+        .update({
+
+          is_online:false,
+
+          last_seen:new Date().toISOString()
+
+        })
+        .eq("id",currentUser.id);
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   USER LIST
+   ===================================================== */
+
+async function loadPeople(
+  search = ""
+){
+
+  let query =
+    supabase
+      .from("profiles")
+      .select("*")
+      .neq("id",currentUser.id)
+      .order("is_online",{ascending:false})
+      .order("full_name",{ascending:true})
+      .limit(100);
+
+
+  if(search){
+
+    const safe =
+      search
+        .replaceAll(",","")
+        .replaceAll("(","")
+        .replaceAll(")","");
+
+    query =
+      query.or(
+        `username.ilike.%${safe}%,full_name.ilike.%${safe}%`
+      );
+
+  }
+
+
+  const {
+    data,
+    error
+  } = await query;
+
+
+  if(error){
+
+    console.error(error);
+
+    return;
+  }
+
+
+  const list =
+    document.getElementById("peopleList");
+
+  list.innerHTML = "";
+
+
+  if(!data?.length){
+
+    list.innerHTML = `
+      <div style="padding:20px;color:#8c9aae">
+        No users found.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  data.forEach(user => {
+
+    const div =
+      document.createElement("div");
+
+    div.className =
+      "person" +
+      (
+        selectedUser?.id === user.id
+          ? " selected"
+          : ""
+      );
+
+
+    div.innerHTML = `
+
+      <div class="avatar">
+        ${escapeHTML(
+          initials(user.full_name)
+        )}
+      </div>
+
+      <div class="person-info">
+
+        <div class="person-name">
+          ${escapeHTML(user.full_name)}
+        </div>
+
+        <div class="person-user">
+          @${escapeHTML(user.username)}
+        </div>
+
+      </div>
+
+      <div class="${
+        user.is_online
+          ? "online"
+          : "offline"
+      }"></div>
+
+    `;
+
+
+    div.onclick =
+      () => selectUser(user);
+
+
+    list.appendChild(div);
+
+  });
+
+}
+
+
+/* =====================================================
+   SELECT USER
+   ===================================================== */
+
+async function selectUser(user){
+
+  selectedUser = user;
+
+
+  document
+    .getElementById("chatEmpty")
+    .classList.add("hidden");
+
+
+  document
+    .getElementById("chatUI")
+    .classList.remove("hidden");
+
+
+  document
+    .getElementById("chatName")
+    .textContent =
+      user.full_name;
+
+
+  document
+    .getElementById("chatAvatar")
+    .textContent =
+      initials(user.full_name);
+
+
+  updateChatStatus(user);
+
+
+  await loadMessages();
+
+
+  document
+    .getElementById("messageInput")
+    .focus();
+
+
+  await loadPeople(
+    document
+      .getElementById("searchInput")
+      .value
+  );
+
+}
+
+
+function updateChatStatus(user){
+
+  document
+    .getElementById("chatStatus")
+    .textContent =
+      user.is_online
+        ? "Online"
+        : `Last seen ${formatTime(user.last_seen)}`;
+}
+
+
+/* =====================================================
+   MESSAGES
+   ===================================================== */
+
+async function loadMessages(){
+
+  if(!selectedUser)
+    return;
+
+
+  const {
+    data,
+    error
+  } =
+    await supabase
+      .from("messages")
+      .select("*")
+      .or(
+        `and(sender_id.eq.${currentUser.id},receiver_id.eq.${selectedUser.id}),and(sender_id.eq.${selectedUser.id},receiver_id.eq.${currentUser.id})`
+      )
+      .order("created_at",{ascending:true});
+
+
+  if(error){
+
+    console.error(error);
+
+    return;
+  }
+
+
+  renderMessages(data || []);
+
+}
+
+
+function renderMessages(data){
+
+  const box =
+    document.getElementById("messages");
+
+  box.innerHTML = "";
+
+
+  data.forEach(message => {
+
+    const mine =
+      message.sender_id === currentUser.id;
+
+
+    const row =
+      document.createElement("div");
+
+    row.className =
+      "message-row" +
+      (mine ? " mine" : "");
+
+
+    row.innerHTML = `
+
+      <div class="bubble">
+
+        ${escapeHTML(
+          message.message_text || ""
+        )}
+
+        <div class="message-time">
+          ${formatTime(message.created_at)}
+        </div>
+
+      </div>
+
+    `;
+
+
+    box.appendChild(row);
+
+  });
+
+
+  box.scrollTop =
+    box.scrollHeight;
+
+}
+
+
+async function sendMessage(){
+
+  if(!selectedUser)
+    return;
+
+
+  const input =
+    document.getElementById("messageInput");
+
+  const text =
+    input.value.trim();
+
+
+  if(!text)
+    return;
+
+
+  input.value = "";
+
+
+  const {
+    error
+  } =
+    await supabase
+      .from("messages")
+      .insert({
+
+        sender_id:currentUser.id,
+
+        receiver_id:selectedUser.id,
+
+        message_text:text,
+
+        message_type:"text"
+
+      });
+
+
+  if(error){
+
+    console.error(error);
+
+    alert(error.message);
+
+  }
+
+}
+
+
+document
+  .getElementById("sendButton")
+  .onclick =
+    sendMessage;
+
+
+document
+  .getElementById("messageInput")
+  .addEventListener(
+    "keydown",
+    event => {
+
+      if(
+        event.key === "Enter" &&
+        !event.shiftKey
+      ){
+
+        event.preventDefault();
+
+        sendMessage();
+
+      }
+
+    }
+  );
+
+
+/* =====================================================
+   REALTIME
+   ===================================================== */
+
+function subscribeRealtime(){
+
+  if(messageChannel)
+    supabase.removeChannel(messageChannel);
+
+  if(profileChannel)
+    supabase.removeChannel(profileChannel);
+
+  if(requestChannel)
+    supabase.removeChannel(requestChannel);
+
+
+  messageChannel =
+    supabase
+      .channel("messages-live")
+
+      .on(
+        "postgres_changes",
+        {
+          event:"INSERT",
+          schema:"public",
+          table:"messages"
+        },
+        async payload => {
+
+          const message =
+            payload.new;
+
+
+          if(
+            !selectedUser ||
+            !(
+              (
+                message.sender_id === currentUser.id &&
+                message.receiver_id === selectedUser.id
+              )
+              ||
+              (
+                message.sender_id === selectedUser.id &&
+                message.receiver_id === currentUser.id
+              )
+            )
+          )
+            return;
+
+
+          await loadMessages();
+
+        }
+      )
+
+      .subscribe();
+
+
+  profileChannel =
+    supabase
+      .channel("profiles-live")
+
+      .on(
+        "postgres_changes",
+        {
+          event:"UPDATE",
+          schema:"public",
+          table:"profiles"
+        },
+        async payload => {
+
+          if(
+            selectedUser &&
+            payload.new.id === selectedUser.id
+          ){
+
+            selectedUser =
+              payload.new;
+
+            updateChatStatus(
+              selectedUser
+            );
+
+          }
+
+
+          await loadPeople(
+            document
+              .getElementById("searchInput")
+              .value
+          );
+
+        }
+      )
+
+      .subscribe();
+
+
+  requestChannel =
+    supabase
+      .channel("requests-live")
+
+      .on(
+        "postgres_changes",
+        {
+          event:"*",
+          schema:"public",
+          table:"friend_requests"
+        },
+        () => {
+
+          if(
+            !document
+              .getElementById("mainContent")
+              .classList.contains("hidden")
+          ){
+
+            // Requests are refreshed when opened.
+          }
+
+        }
+      )
+
+      .subscribe();
+
+}
+
+
+/* =====================================================
+   SEARCH
+   ===================================================== */
+
+let searchTimer;
+
+document
+  .getElementById("searchInput")
+  .addEventListener(
+    "input",
+    () => {
+
+      clearTimeout(searchTimer);
+
+      searchTimer =
+        setTimeout(
+          () =>
+            loadPeople(
+              document
+                .getElementById("searchInput")
+                .value
+            ),
+          250
+        );
+
+    }
+  );
+
+
+document
+  .getElementById("refreshUsers")
+  .onclick =
+    () =>
+      loadPeople(
+        document
+          .getElementById("searchInput")
+          .value
+      );
+
+
+/* =====================================================
+   NOTES
+   ===================================================== */
+
+async function showNotes(){
+
+  const {
+    data,
+    error
+  } =
+    await supabase
+      .from("notes")
+      .select("*")
+      .eq("user_id",currentUser.id)
+      .order("created_at",{ascending:false});
+
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  const main =
+    document.getElementById("mainContent");
+
+
+  main.innerHTML = `
+
+    <div class="page">
+
+      <div class="page-title">
+        📝 My Notes
+      </div>
+
+      <button
+        class="primary"
+        id="newNoteButton"
+        style="max-width:180px;margin-bottom:18px">
+        + New Note
+      </button>
+
+      <div id="notesList"></div>
+
+    </div>
+
+  `;
+
+
+  const notesList =
+    document.getElementById("notesList");
+
+
+  if(!data?.length){
+
+    notesList.innerHTML = `
+      <div class="card">
+        <div class="card-title">
+          No notes yet
+        </div>
+        <div class="card-sub">
+          Create your first note.
+        </div>
+      </div>
+    `;
+
+  }else{
+
+    data.forEach(note => {
+
+      const div =
+        document.createElement("div");
+
+      div.className = "note";
+
+      div.innerHTML = `
+
+        <h3>
+          ${escapeHTML(note.title)}
+        </h3>
+
+        <p>
+          ${escapeHTML(note.content)}
+        </p>
+
+        <button
+          style="
+            margin-top:12px;
+            padding:7px 10px;
+            border-radius:8px;
+            border:1px solid #293546;
+            background:#111a26;
+            color:#ff7c88"
+          data-id="${note.id}">
+          Delete
+        </button>
+
+      `;
+
+      div
+        .querySelector("button")
+        .onclick =
+          () => deleteNote(note.id);
+
+      notesList.appendChild(div);
+
+    });
+
+  }
+
+
+  document
+    .getElementById("newNoteButton")
+    .onclick =
+      openNoteModal;
+
+}
+
+
+async function deleteNote(id){
+
+  if(!confirm("Delete this note?"))
+    return;
+
+
+  await supabase
+    .from("notes")
+    .delete()
+    .eq("id",id)
+    .eq("user_id",currentUser.id);
+
+
+  showNotes();
+
+}
+
+
+function openNoteModal(){
+
+  openModal(`
+
+    <div>
+
+      <h2>New Note</h2>
+
+      <br>
+
+      <div class="field">
+        <label>Title</label>
+        <input id="noteTitle">
+      </div>
+
+      <div class="field">
+        <label>Note</label>
+        <textarea
+          id="noteContent"
+          rows="6"></textarea>
+      </div>
+
+      <div class="modal-actions">
+
+        <button id="cancelNote">
+          Cancel
+        </button>
+
+        <button
+          class="primary"
+          id="saveNote">
+          Save
+        </button>
+
+      </div>
+
+    </div>
+
+  `);
+
+
+  document
+    .getElementById("cancelNote")
+    .onclick =
+      closeModal;
+
+
+  document
+    .getElementById("saveNote")
+    .onclick =
+      saveNote;
+
+}
+
+
+async function saveNote(){
+
+  const title =
+    document
+      .getElementById("noteTitle")
+      .value
+      .trim();
+
+
+  const content =
+    document
+      .getElementById("noteContent")
+      .value
+      .trim();
+
+
+  if(!title || !content){
+
+    alert("Enter title and note.");
+
+    return;
+  }
+
+
+  const {
+    error
+  } =
+    await supabase
+      .from("notes")
+      .insert({
+
+        user_id:currentUser.id,
+
+        title,
+
+        content
+
+      });
+
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  closeModal();
+
+  showNotes();
+
+}
+
+
+/* =====================================================
+   STORIES
+   ===================================================== */
+
+async function showStories(){
+
+  const {
+    data,
+    error
+  } =
+    await supabase
+      .from("stories")
+      .select(`
+        *,
+        profiles:user_id(
+          full_name,
+          username
+        )
+      `)
+      .gt(
+        "expires_at",
+        new Date().toISOString()
+      )
+      .order(
+        "created_at",
+        {ascending:false}
+      );
+
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  const main =
+    document.getElementById("mainContent");
+
+
+  main.innerHTML = `
+
+    <div class="page">
+
+      <div class="page-title">
+        🟣 Stories
+      </div>
+
+      <button
+        class="primary"
+        id="newStoryButton"
+        style="max-width:180px;margin-bottom:18px">
+        + Add Story
+      </button>
+
+      <div id="storiesList"></div>
+
+    </div>
+
+  `;
+
+
+  const list =
+    document.getElementById("storiesList");
+
+
+  if(!data?.length){
+
+    list.innerHTML = `
+      <div class="card">
+        No active stories.
+      </div>
+    `;
+
+  }else{
+
+    data.forEach(story => {
+
+      const div =
+        document.createElement("div");
+
+      div.className =
+        "story";
+
+
+      const profile =
+        story.profiles;
+
+
+      div.innerHTML = `
+
+        <div style="font-weight:800">
+          ${escapeHTML(
+            profile?.full_name ||
+            "User"
+          )}
+        </div>
+
+        <div style="
+          color:#8c9aae;
+          font-size:12px;
+          margin:4px 0 10px">
+          @${escapeHTML(
+            profile?.username ||
+            ""
+          )}
+        </div>
+
+        <div>
+          ${escapeHTML(
+            story.content || ""
+          )}
+        </div>
+
+      `;
+
+
+      list.appendChild(div);
+
+    });
+
+  }
+
+
+  document
+    .getElementById("newStoryButton")
+    .onclick =
+      openStoryModal;
+
+}
+
+
+function openStoryModal(){
+
+  openModal(`
+
+    <div>
+
+      <h2>Add Story</h2>
+
+      <br>
+
+      <div class="field">
+
+        <label>
+          Story
+        </label>
+
+        <textarea
+          id="storyText"
+          rows="5"
+          maxlength="500"></textarea>
+
+      </div>
+
+      <div class="modal-actions">
+
+        <button id="cancelStory">
+          Cancel
+        </button>
+
+        <button
+          class="primary"
+          id="saveStory">
+          Post
+        </button>
+
+      </div>
+
+    </div>
+
+  `);
+
+
+  document
+    .getElementById("cancelStory")
+    .onclick =
+      closeModal;
+
+
+  document
+    .getElementById("saveStory")
+    .onclick =
+      saveStory;
+
+}
+
+
+async function saveStory(){
+
+  const content =
+    document
+      .getElementById("storyText")
+      .value
+      .trim();
+
+
+  if(!content){
+
+    alert("Write something.");
+
+    return;
+  }
+
+
+  const {
+    error
+  } =
+    await supabase
+      .from("stories")
+      .insert({
+
+        user_id:currentUser.id,
+
+        story_type:"text",
+
+        content
+
+      });
+
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  closeModal();
+
+  showStories();
+
+}
+
+
+/* =====================================================
+   FRIEND REQUESTS
+   ===================================================== */
+
+async function showRequests(){
+
+  const {
+    data,
+    error
+  } =
+    await supabase
+      .from("friend_requests")
+      .select(`
+        *,
+        sender:sender_id(
+          full_name,
+          username
+        ),
+        receiver:receiver_id(
+          full_name,
+          username
+        )
+      `)
+      .or(
+        `sender_id.eq.${currentUser.id},receiver_id.eq.${currentUser.id}`
+      )
+      .order(
+        "created_at",
+        {ascending:false}
+      );
+
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  const main =
+    document.getElementById("mainContent");
+
+
+  main.innerHTML = `
+
+    <div class="page">
+
+      <div class="page-title">
+        👥 Friend Requests
+      </div>
+
+      <div id="requestsList"></div>
+
+    </div>
+
+  `;
+
+
+  const list =
+    document.getElementById("requestsList");
+
+
+  if(!data?.length){
+
+    list.innerHTML = `
+      <div class="card">
+        No requests.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  data.forEach(request => {
+
+    const incoming =
+      request.receiver_id === currentUser.id;
+
+
+    const person =
+      incoming
+        ? request.sender
+        : request.receiver;
+
+
+    const div =
+      document.createElement("div");
+
+    div.className =
+      "card";
+
+
+    div.innerHTML = `
+
+      <div style="font-weight:800">
+        ${escapeHTML(
+          person?.full_name ||
+          "User"
+        )}
+      </div>
+
+      <div class="card-sub">
+        @${escapeHTML(
+          person?.username ||
+          ""
+        )}
+      </div>
+
+      <div
+        style="
+          margin-top:12px;
+          display:flex;
+          gap:7px">
+
+        ${
+          incoming &&
+          request.status === "pending"
+
+          ? `
+
+            <button
+              class="primary"
+              style="width:auto;padding:8px 13px"
+              data-action="accept">
+              Accept
+            </button>
+
+            <button
+              style="
+                padding:8px 13px;
+                border:1px solid #2a3442;
+                background:#111a26;
+                color:#ff7c88;
+                border-radius:9px"
+              data-action="reject">
+              Reject
+            </button>
+
+          `
+
+          : `
+
+            <span
+              class="card-sub">
+              ${escapeHTML(
+                request.status
+              )}
+            </span>
+
+          `
+        }
+
+      </div>
+
+    `;
+
+
+    const accept =
+      div.querySelector(
+        '[data-action="accept"]'
+      );
+
+    const reject =
+      div.querySelector(
+        '[data-action="reject"]'
+      );
+
+
+    if(accept){
+
+      accept.onclick =
+        () =>
+          updateRequest(
+            request.id,
+            "accepted"
+          );
+
+    }
+
+
+    if(reject){
+
+      reject.onclick =
+        () =>
+          updateRequest(
+            request.id,
+            "rejected"
+          );
+
+    }
+
+
+    list.appendChild(div);
+
+  });
+
+}
+
+
+async function updateRequest(
+  id,
+  status
+){
+
+  const {
+    error
+  } =
+    await supabase
+      .from("friend_requests")
+      .update({
+        status,
+        updated_at:
+          new Date().toISOString()
+      })
+      .eq("id",id);
+
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  showRequests();
+
+}
+
+
+async function sendFriendRequest(user){
+
+  const {
+    data:existing
+  } =
+    await supabase
+      .from("friend_requests")
+      .select("id,status")
+      .or(
+        `and(sender_id.eq.${currentUser.id},receiver_id.eq.${user.id}),and(sender_id.eq.${user.id},receiver_id.eq.${currentUser.id})`
+      )
+      .limit(1);
+
+
+  if(existing?.length){
+
+    alert(
+      "A request already exists."
+    );
+
+    return;
+  }
+
+
+  const {
+    error
+  } =
+    await supabase
+      .from("friend_requests")
+      .insert({
+
+        sender_id:currentUser.id,
+
+        receiver_id:user.id
+
+      });
+
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  alert(
+    "Friend request sent."
+  );
+
+}
+
+
+/* =====================================================
+   VOICE MESSAGE
+   ===================================================== */
+
+async function startVoiceRecording(){
+
+  if(!selectedUser){
+
+    alert(
+      "Select a user first."
+    );
+
+    return;
+  }
+
+
+  if(mediaRecorder){
+
+    stopVoiceRecording();
+
+    return;
+  }
+
+
+  try{
+
+    const stream =
+      await navigator.mediaDevices
+        .getUserMedia({
+          audio:true
+        });
+
+
+    audioChunks = [];
+
+
+    mediaRecorder =
+      new MediaRecorder(stream);
+
+
+    mediaRecorder.ondataavailable =
+      event => {
+
+        if(event.data.size > 0)
+          audioChunks.push(
+            event.data
+          );
+
+      };
+
+
+    mediaRecorder.onstop =
+      async () => {
+
+        stream
+          .getTracks()
+          .forEach(
+            track =>
+              track.stop()
+          );
+
+
+        const blob =
+          new Blob(
+            audioChunks,
+            {
+              type:
+                mediaRecorder.mimeType ||
+                "audio/webm"
+            }
+          );
+
+
+        mediaRecorder = null;
+
+        await uploadVoice(
+          blob
+        );
+
+      };
+
+
+    mediaRecorder.start();
+
+
+    document
+      .getElementById("voiceButton")
+      .textContent =
+        "⏹️";
+
+  }catch(error){
+
+    alert(
+      "Microphone permission was denied or unavailable."
+    );
+
+    console.error(error);
+
+  }
+
+}
+
+
+function stopVoiceRecording(){
+
+  if(mediaRecorder &&
+     mediaRecorder.state !== "inactive"){
+
+    mediaRecorder.stop();
+
+  }
+
+  document
+    .getElementById("voiceButton")
+    .textContent =
+      "🎙️";
+
+}
+
+
+async function uploadVoice(blob){
+
+  if(!selectedUser)
+    return;
+
+
+  const path =
+    `${currentUser.id}/${crypto.randomUUID()}.webm`;
+
+
+  const {
+    error:uploadError
+  } =
+    await supabase
+      .storage
+      .from("voice-messages")
+      .upload(
+        path,
+        blob,
+        {
+          contentType:"audio/webm"
+        }
+      );
+
+
+  if(uploadError){
+
+    alert(
+      uploadError.message
+    );
+
+    return;
+  }
+
+
+  const {
+    error
+  } =
+    await supabase
+      .from("voice_messages")
+      .insert({
+
+        sender_id:currentUser.id,
+
+        receiver_id:selectedUser.id,
+
+        storage_path:path,
+
+        duration_seconds:0
+
+      });
+
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  /*
+    A text message is also created as a marker.
+  */
+
+  await supabase
+    .from("messages")
+    .insert({
+
+      sender_id:currentUser.id,
+
+      receiver_id:selectedUser.id,
+
+      message_text:"🎙️ Voice message",
+
+      message_type:"voice"
+
+    });
+
+}
+
+
+document
+  .getElementById("voiceButton")
+  .onclick =
+    startVoiceRecording;
+
+
+/* =====================================================
+   WEBRTC AUDIO CALL
+   ===================================================== */
+
+function createPeerConnection(){
+
+  peerConnection =
+    new RTCPeerConnection({
+
+      iceServers:[
+
+        {
+          urls:"stun:stun.l.google.com:19302"
+        },
+
+        {
+          urls:"stun:stun1.l.google.com:19302"
+        }
+
+      ]
+
+    });
+
+
+  if(localStream){
+
+    localStream
+      .getTracks()
+      .forEach(
+        track =>
+          peerConnection
+            .addTrack(
+              track,
+              localStream
+            )
+      );
+
+  }
+
+
+  peerConnection.onicecandidate =
+    async event => {
+
+      if(
+        event.candidate &&
+        currentCallId &&
+        selectedUser
+      ){
+
+        await sendCallSignal(
+          "ice",
+          event.candidate
+        );
+
+      }
+
+    };
+
+
+  peerConnection.ontrack =
+    event => {
+
+      let audio =
+        document.getElementById(
+          "remoteAudio"
+        );
+
+
+      if(!audio){
+
+        audio =
+          document.createElement(
+            "audio"
+          );
+
+        audio.id =
+          "remoteAudio";
+
+        audio.autoplay = true;
+
+        document.body.appendChild(
+          audio
+        );
+
+      }
+
+
+      audio.srcObject =
+        event.streams[0];
+
+    };
+
+
+  return peerConnection;
+}
+
+
+async function sendCallSignal(
+  type,
+  payload
+){
+
+  if(!selectedUser ||
+     !currentCallId)
+    return;
+
+
+  await supabase
+    .from("call_signals")
+    .insert({
+
+      call_id:currentCallId,
+
+      caller_id:currentUser.id,
+
+      callee_id:selectedUser.id,
+
+      signal_type:type,
+
+      payload
+
+    });
+
+}
+
+
+async function startCall(){
+
+  if(!selectedUser){
+
+    alert(
+      "Select a user first."
+    );
+
+    return;
+  }
+
+
+  try{
+
+    localStream =
+      await navigator.mediaDevices
+        .getUserMedia({
+          audio:true,
+          video:false
+        });
+
+
+    currentCallId =
+      crypto.randomUUID();
+
+
+    createPeerConnection();
+
+
+    const offer =
+      await peerConnection
+        .createOffer();
+
+
+    await peerConnection
+      .setLocalDescription(
+        offer
+      );
+
+
+    await sendCallSignal(
+      "offer",
+      offer
+    );
+
+
+    openCallModal(
+      "Calling " +
+      selectedUser.full_name
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Could not access microphone."
+    );
+
+  }
+
+}
+
+
+async function acceptCall(
+  signal
+){
+
+  selectedUser = await getProfile(
+    signal.caller_id
+  );
+
+
+  currentCallId =
+    signal.call_id;
+
+
+  try{
+
+    localStream =
+      await navigator.mediaDevices
+        .getUserMedia({
+          audio:true
+        });
+
+
+    createPeerConnection();
+
+
+    await peerConnection
+      .setRemoteDescription(
+        new RTCSessionDescription(
+          signal.payload
+        )
+      );
+
+
+    const answer =
+      await peerConnection
+        .createAnswer();
+
+
+    await peerConnection
+      .setLocalDescription(
+        answer
+      );
+
+
+    await sendCallSignal(
+      "answer",
+      answer
+    );
+
+
+    closeModal();
+
+    openCallModal(
+      "Connected with " +
+      selectedUser.full_name
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Could not accept call."
+    );
+
+  }
+
+}
+
+
+async function handleCallSignal(
+  signal
+){
+
+  if(
+    signal.callee_id !== currentUser.id &&
+    signal.caller_id !== currentUser.id
+  )
+    return;
+
+
+  if(
+    signal.signal_type === "offer" &&
+    signal.callee_id === currentUser.id
+  ){
+
+    openIncomingCall(
+      signal
+    );
+
+    return;
+  }
+
+
+  if(
+    signal.call_id !== currentCallId
+  )
+    return;
+
+
+  if(
+    signal.signal_type === "answer" &&
+    peerConnection
+  ){
+
+    await peerConnection
+      .setRemoteDescription(
+        new RTCSessionDescription(
+          signal.payload
+        )
+      );
+
+    return;
+  }
+
+
+  if(
+    signal.signal_type === "ice" &&
+    peerConnection
+  ){
+
+    try{
+
+      await peerConnection
+        .addIceCandidate(
+          new RTCIceCandidate(
+            signal.payload
+          )
+        );
+
+    }catch(error){
+
+      console.error(error);
+
+    }
+
+  }
+
+
+  if(
+    signal.signal_type === "end"
+  ){
+
+    endCall(false);
+
+  }
+
+}
+
+
+function subscribeCalls(){
+
+  if(callChannel)
+    supabase.removeChannel(
+      callChannel
+    );
+
+
+  callChannel =
+    supabase
+      .channel("calls-live")
+
+      .on(
+        "postgres_changes",
+        {
+          event:"INSERT",
+          schema:"public",
+          table:"call_signals"
+        },
+        payload =>
+          handleCallSignal(
+            payload.new
+          )
+      )
+
+      .subscribe();
+
+}
+
+
+async function getProfile(id){
+
+  const {
+    data
+  } =
+    await supabase
+      .from("profiles")
+      .select("*")
+      .eq("id",id)
+      .single();
+
+
+  return data;
+}
+
+
+function openIncomingCall(
+  signal
+){
+
+  openModal(`
+
+    <div class="call-box">
+
+      <div class="call-avatar">
+        📞
+      </div>
+
+      <h2>
+        Incoming Audio Call
+      </h2>
+
+      <p
+        style="
+          color:#8c9aae;
+          margin-top:8px">
+        Someone is calling you.
+      </p>
+
+      <div class="call-buttons">
+
+        <button id="acceptCall">
+          Accept
+        </button>
+
+        <button
+          class="end"
+          id="rejectCall">
+          Reject
+        </button>
+
+      </div>
+
+    </div>
+
+  `);
+
+
+  document
+    .getElementById("acceptCall")
+    .onclick =
+      () =>
+        acceptCall(signal);
+
+
+  document
+    .getElementById("rejectCall")
+    .onclick =
+      () => {
+
+        closeModal();
+
+      };
+
+}
+
+
+function openCallModal(
+  title
+){
+
+  openModal(`
+
+    <div class="call-box">
+
+      <div class="call-avatar">
+        🎧
+      </div>
+
+      <h2>
+        ${escapeHTML(title)}
+      </h2>
+
+      <p
+        style="
+          color:#39d98a;
+          margin-top:8px">
+        Audio call active
+      </p>
+
+      <div class="call-buttons">
+
+        <button
+          class="end"
+          id="endCall">
+          End Call
+        </button>
+
+      </div>
+
+    </div>
+
+  `);
+
+
+  document
+    .getElementById("endCall")
+    .onclick =
+      () =>
+        endCall(true);
+
+}
+
+
+async function endCall(
+sendSignal = true
+){
+
+  if(
+    sendSignal &&
+    currentCallId &&
+    selectedUser
+  ){
+
+    await sendCallSignal(
+      "end",
+      {}
+    );
+
+  }
+
+
+  if(localStream){
+
+    localStream
+      .getTracks()
+      .forEach(
+        track =>
+          track.stop()
+      );
+
+    localStream = null;
+
+  }
+
+
+  if(peerConnection){
+
+    peerConnection.close();
+
+    peerConnection = null;
+
+  }
+
+
+  currentCallId = null;
+
+  closeModal();
+
+}
+
+
+document
+  .getElementById("callButton")
+  .onclick =
+    startCall;
+
+
+/* =====================================================
+   MODAL
+   ===================================================== */
+
+function openModal(html){
+
+  const modal =
+    document.getElementById("modal");
+
+  document
+    .getElementById("modalBox")
+    .innerHTML =
+      html;
+
+  modal.classList.remove(
+    "hidden"
+  );
+
+}
+
+
+function closeModal(){
+
+  document
+    .getElementById("modal")
+    .classList.add(
+      "hidden"
+    );
+
+}
+
+
+document
+  .getElementById("modal")
+  .addEventListener(
+    "click",
+    event => {
+
+      if(
+        event.target.id === "modal"
+      ){
+
+        closeModal();
+
+      }
+
+    }
+  );
+
+
+/* =====================================================
+   NAVIGATION
+   ===================================================== */
+
+function restoreChat(){
+
+  location.reload();
+
+}
+
+
+document
+  .getElementById("navChat")
+  .onclick =
+    restoreChat;
+
+
+document
+  .getElementById("navNotes")
+  .onclick =
+    showNotes;
+
+
+document
+  .getElementById("navStories")
+  .onclick =
+    showStories;
+
+
+document
+  .getElementById("navRequests")
+  .onclick =
+    showRequests;
+
+
+/* =====================================================
+   LOGOUT
+   ===================================================== */
+
+document
+  .getElementById("logout")
+  .onclick =
+    async () => {
+
+      await setOnline(false);
+
+      await supabase.auth.signOut();
+
+      location.reload();
+
+    };
+
+
+/* =====================================================
+   AUTH SESSION
+   ===================================================== */
+
+supabase.auth.onAuthStateChange(
+  async (event, session) => {
+
+    if(session?.user){
+
+      currentUser =
+        session.user;
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   START
+   ===================================================== */
+
+updateBrand();
+
+subscribeCalls();
+
+
+const {
+  data:sessionData
+} =
+  await supabase.auth.getSession();
+
+
+if(sessionData.session){
+
+  currentUser =
+    sessionData.session.user;
+
+  await boot();
+
+}
+
+</script>
+
+</body>
+</html>
